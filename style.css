@@ -1,0 +1,148 @@
+/*
+Theme Name: Godaar
+Theme URI: http://hostlink.ir
+Author: MiSaCo.
+Author URI: http://misaco.ir/
+Description: Made with love by MiSaCo. ,Dedicated for Godaar
+Version: 0.9.9
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: godaar
+Tags: one-column, two-columns, right-sidebar, flexible-header, accessibility-ready, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready
+*/
+
+
+@import 'css/font-awesome.min.css';
+/* bootstrap styles */
+@import 'css/bootstrap.min.css';
+/* ionicons font */
+@import 'css/ionicons.min.css';
+/* animation styles */
+@import 'css/animate.css';
+@import 'css/custom-red.css?version=0.9.2';
+/* owl carousel styles */
+@import 'css/owl.carousel.css';
+@import 'css/owl.transitions.css';
+/* magnific popup styles */
+@import 'css/magnific-popup.css';
+@import "https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css";
+
+
+
+
+
+/* We all know, this is Custom css for making RTL and customize THEME, so here we are let`s Customize  */
+@font-face{
+  font-family: 'irsans';
+  font-style: normal;
+  src:url('fonts/irsans.ttf')format('truetype');
+}
+@font-face{
+  font-family: 'BFarnaz';
+  font-style: normal;
+  src:url('fonts/BFarnaz.ttf')format('truetype');
+}
+@font-face{
+  font-family: 'Farnaz';
+  font-style: normal;
+  src:url('fonts/FARNAZ.TTF')format('truetype');
+}
+
+@font-face{
+  font-family: 'MITRA';
+  font-style: normal;
+  src:url('fonts/MITRA.TTF')format('truetype');
+}
+@font-face{
+  font-family: 'MITRAB';
+  font-style: normal;
+  src:url('fonts/MITRAB.TTF')format('truetype');
+}
+@font-face{
+  font-family: 'BYEKAN';
+  font-style: normal;
+  src:url('fonts/BYEKAN.TTF')format('truetype');
+}
+
+* {
+  font-family: serif;
+  /*font-size: 16px !important;*/
+}
+
+.navbar-nav>li {
+  direction: rtl;
+}
+@media (min-width: 768px)
+{
+  .navbar-nav>li {
+    float: right;
+  }
+}
+img {
+  max-width: 100%;
+}
+.dropdown-menu {
+  right: 0;
+  left: inherit;
+}
+
+.float-sub-right li {
+  float: right;
+}
+
+.rtl {
+  direction: rtl;
+}
+.justify {
+  text-align: justify;
+}
+.line-height {
+  line-height: 1.7;
+}
+
+.txt-right {
+  text-align: right;
+}
+.list-unstyled {
+  padding-right: 0px;
+}
+.wpp-list {
+  padding-left: 0;
+  list-style: none;
+}
+.wpp-list li {
+  overflow: hidden;
+  float: none;
+  clear: both;
+  border-bottom: 1px solid #ededed;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  direction: rtl;
+  text-align: right;
+}
+
+.list-group {
+  margin-bottom: 15px;
+  padding: 0px;
+}
+.list-group > li.menu-item {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 1px solid rgb(175, 175, 175);
+  font-size: 13px;
+  transition: 0.4s ease-in-out;
+}
+.list-group > li.menu-item:hover {
+  background-color: #e6e6e6;
+}
+
+.list-group > li.menu-item > a  {
+  color: black;
+}
+.list-group > li.menu-item > a > i {
+  padding-left: 6px;
+  font-size: 18px;
+}
