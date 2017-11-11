@@ -297,15 +297,15 @@ class mega_menu_wpmen extends Walker_Nav_Menu {
 
     // Build HTML output and pass through the proper filter.
     $item_output = sprintf( '%1$s<a%2$s>%3$s%4$s%5$s</a>%6$s',
-    $args->before,
-    $attributes,
-    $args->link_before,
-    apply_filters( 'the_title', $item->title, $item->ID ),
-    $args->link_after,
-    $args->after
-  );
-  $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
-}
+      $args->before,
+      $attributes,
+      $args->link_before,
+      apply_filters( 'the_title', $item->title, $item->ID ),
+      $args->link_after,
+      $args->after
+    );
+    $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+  }
 
 
 
@@ -564,20 +564,20 @@ function custom_breadcrumbs() {
 function wpbeginner_numeric_posts_nav() {
 
   if( is_singular() )
-  return;
+    return;
 
   global $wp_query;
 
   /** Stop execution if there's only 1 page */
   if( $wp_query->max_num_pages <= 1 )
-  return;
+    return;
 
   $paged = get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : 1;
   $max   = intval( $wp_query->max_num_pages );
 
   /**	Add current page to the array */
   if ( $paged >= 1 )
-  $links[] = $paged;
+    $links[] = $paged;
 
   /**	Add the pages around the current page to the array */
   if ( $paged >= 3 ) {
@@ -595,7 +595,7 @@ function wpbeginner_numeric_posts_nav() {
 
   /**	Previous Post Link */
   if ( get_previous_posts_link() )
-  printf( '<li>%s</li>' . "\n", get_previous_posts_link() );
+    printf( '<li>%s</li>' . "\n", get_previous_posts_link() );
 
   /**	Link to first page, plus ellipses if necessary */
   if ( ! in_array( 1, $links ) ) {
@@ -604,7 +604,7 @@ function wpbeginner_numeric_posts_nav() {
     printf( '<li%s><a href="%s">%s</a></li>' . "\n", $class, esc_url( get_pagenum_link( 1 ) ), '1' );
 
     if ( ! in_array( 2, $links ) )
-    echo '<li>…</li>';
+      echo '<li>…</li>';
   }
 
   /**	Link to current page, plus 2 pages in either direction if necessary */
@@ -617,7 +617,7 @@ function wpbeginner_numeric_posts_nav() {
   /**	Link to last page, plus ellipses if necessary */
   if ( ! in_array( $max, $links ) ) {
     if ( ! in_array( $max - 1, $links ) )
-    echo '<li>…</li>' . "\n";
+      echo '<li>…</li>' . "\n";
 
     $class = $paged == $max ? ' class="active"' : '';
     printf( '<li%s><a href="%s">%s</a></li>' . "\n", $class, esc_url( get_pagenum_link( $max ) ), $max );
@@ -625,7 +625,7 @@ function wpbeginner_numeric_posts_nav() {
 
   /**	Next Post Link */
   if ( get_next_posts_link() )
-  printf( '<li>%s</li>' . "\n", get_next_posts_link() );
+    printf( '<li>%s</li>' . "\n", get_next_posts_link() );
 
   echo '</ul>' . "\n";
 
@@ -660,38 +660,98 @@ function mytheme_comment($comment, $args, $depth) {
   ?>
   <div <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
     <!-- <a href="#" class="pull-right"> -->
-    <!-- <?php echo get_avatar($comment,$size='64',$default='<path_to_url>' ); ?> -->
-    <!-- <img alt="64x64" data-src="holder.js/64x64" class="media-object" style="width: 64px; height: 64px;" src="images/comments/com-1.jpg"> -->
-    <!-- </a> -->
-    <div class="media-body">
-      <div>
-        <h4 class="media-heading"><?php echo get_comment_author_link(); ?></h4>
-        <div class="time text-danger"><span class="ion-android-data icon">  <?php printf(__('%1$s at %2$s'), get_comment_date(),  get_comment_time()) ?></span></div>
-      </div>
-      <?php comment_text(); ?>
-      <!-- <div class="col-sm-16"><a href="#"><span class="reply pull-right ion-ios7-compose">  <?php edit_comment_link(__('(Edit)'),'  ','') ?></span></a></div> -->
+      <!-- <?php echo get_avatar($comment,$size='64',$default='<path_to_url>' ); ?> -->
+      <!-- <img alt="64x64" data-src="holder.js/64x64" class="media-object" style="width: 64px; height: 64px;" src="images/comments/com-1.jpg"> -->
+      <!-- </a> -->
+      <div class="media-body">
+        <div>
+          <h4 class="media-heading"><?php echo get_comment_author_link(); ?></h4>
+          <div class="time text-danger"><span class="ion-android-data icon">  <?php printf(__('%1$s at %2$s'), get_comment_date(),  get_comment_time()) ?></span></div>
+        </div>
+        <?php comment_text(); ?>
+        <!-- <div class="col-sm-16"><a href="#"><span class="reply pull-right ion-ios7-compose">  <?php edit_comment_link(__('(Edit)'),'  ','') ?></span></a></div> -->
 
-      <div class="reply comment-reply-link">
-        <?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
-      </div>
+        <div class="reply comment-reply-link">
+          <?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+        </div>
 
+      </div>
     </div>
-  </div>
 
-  <?php
-}
+    <?php
+  }
 
 
-add_filter('comment_class' , 'add_new_class');
-function add_new_class($class){
-  $class[] = 'media';
-  return $class;
-}
+  add_filter('comment_class' , 'add_new_class');
+  function add_new_class($class){
+    $class[] = 'media';
+    return $class;
+  }
 
 
 //for reply link
-add_filter('comment_reply_link', 'replace_reply_link_class');
-function replace_reply_link_class($class){
-  $class = str_replace("class='comment-reply-link", "class='comment-reply-link pull-right btn btn-primary btn-xs", $class);
-  return $class;
-}
+  add_filter('comment_reply_link', 'replace_reply_link_class');
+  function replace_reply_link_class($class){
+    $class = str_replace("class='comment-reply-link", "class='comment-reply-link pull-right btn btn-primary btn-xs", $class);
+    return $class;
+  }
+
+
+
+  add_action('wp_head','wpcats_ajaxurl');
+  function wpcats_ajaxurl() {
+    ?>
+    <script type="text/javascript">
+      var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
+    </script>
+    <?php
+  }
+
+
+  add_action("wp_ajax_catnews_ajax", "catnews_ajax");
+  add_action("wp_ajax_nopriv_catnews_ajax", "catnews_ajax");
+  function catnews_ajax(){
+   header('Content-Type: application/json');
+   $keyword = $_REQUEST["keyword"];
+   $result    = array();
+   $res=array();
+   /*	$catnewsshomepage = new WP_Query("cat=$fieldid&showposts=8");*/
+/*	if ($catnewsshomepage->have_posts()):
+		while ($catnewsshomepage->have_posts()):
+			$catnewsshomepage->the_post();
+		$categories = get_the_category();
+		$author_id = get_the_author_meta('ID');
+		$telegram_profile = get_field('telegram_profile', 'user_'. $author_id );
+		$profile = get_field('profile', 'user_'. $author_id );
+		$categories = get_the_category();
+		$result['title']=get_the_title();
+		$category1 = &get_category($fieldid);
+		$result['catslug']='http://wpmen.ir/category/'.$category1->slug;
+		$result['catname']= get_cat_name( $fieldid );
+		$result['image']=get_field('size_w507_h240');
+		$result['shortlink']= wp_get_shortlink();
+		$result['comments_number'] = get_comments_number();
+
+		$res[]=$result;
+		endwhile; endif;
+
+*/
+
+    $args = array(
+      'post_type' => array( 'any' )
+    );
+    $catnewsshomepage = new WP_Query( $args );
+    if ($catnewsshomepage->have_posts()):
+      while ($catnewsshomepage->have_posts()):
+        $result['title']=get_the_title();
+        $res[]=$result;
+      endwhile; endif;
+
+
+      $res['keyword']=$keyword;
+
+      $json = json_encode($res);
+      echo $json ;
+      wp_die();
+
+    }
